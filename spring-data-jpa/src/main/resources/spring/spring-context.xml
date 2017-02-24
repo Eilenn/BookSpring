@@ -18,7 +18,9 @@
 	<bean id="sequence" class="pl.spring.demo.common.Sequence" />
 
 	<!-- AOP -->
-	<bean id="bookDaoAdvisor" class="pl.spring.demo.aop.BookDaoAdvisor">
+	<bean id="bookDaoAdvisor" class="pl.spring.demo.aop.BookDaoAdvisor"/>
+
+	<bean id="bookNextIdBeforeSaving" class="pl.spring.demo.aop.BookNextIDBeforeSaving">
 		<property name="sequence" ref="sequence" />
 	</bean>
 
@@ -31,6 +33,7 @@
 		<property name="interceptorNames">
 			<list>
 				<value>bookDaoAdvisor</value>
+				<value>bookNextIdBeforeSaving</value>
 			</list>
 		</property>
 	</bean>

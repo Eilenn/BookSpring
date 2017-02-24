@@ -14,28 +14,17 @@ import java.lang.reflect.Method;
 
 public class BookDaoAdvisor implements MethodBeforeAdvice {
 
-	private BookDaoImpl bookdaoimpl;
-	private Sequence sequence;
+/*	private BookDaoImpl bookdaoimpl;
+	private Sequence sequence;*/
     @Override
     public void before(Method method, Object[] objects, Object o) throws Throwable {
 
         if (hasAnnotation(method, o, NullableId.class)) {
             checkNotNullId(objects[0]);
         }
-    	if(o instanceof BookDaoImpl){
-    		if(method.equals("save")){
-    			BookTo book=(BookTo) objects[0];
-    			bookdaoimpl=(BookDaoImpl)o;
-    	        if (book.getId() == null) {
-    	            book.setId(sequence.nextValue(bookdaoimpl.findAll()));
-    	        }
-    		}
-    			
-    	}
+
     }
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
-    }
+
 
     private void checkNotNullId(Object o) {
         if (o instanceof IdAware && ((IdAware) o).getId() != null) {
