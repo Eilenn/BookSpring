@@ -35,4 +35,5 @@ public class BookServiceImplTest {
         Mockito.verify(bookDao).save(book);
         assertEquals(1L, result.getId().longValue());
     }
+
 }
